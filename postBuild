@@ -1,0 +1,4 @@
+#!/bin/bash
+# Binder: runs after environment.yml is installed and the repo is copied in.
+set -euo pipefail
+python -m pip install --no-deps -e .

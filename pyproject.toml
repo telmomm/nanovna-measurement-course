@@ -1,0 +1,77 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "vnacourse"
+version = "0.9.0"
+description = "Helper utilities for the nanovna-measurement-course learning module on S-parameter measurement and calibration."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [
+    { name = "Telmo Miguel-Medina" },
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: BSD License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Education",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "numpy>=1.24",
+    "matplotlib>=3.7",
+    "scikit-rf>=1.0",
+]
+
+[project.optional-dependencies]
+# Only notebook 05 needs this.
+validation = [
+    "rfmeasurement>=0.3",
+]
+notebooks = [
+    "jupyterlab>=4.0",
+    "ipykernel",
+    "rfmeasurement>=0.3",
+]
+# Jupyter Book 1.x: the configuration in book/ is not valid for version 2.
+book = [
+    "jupyter-book>=1.0,<2",
+    "rfmeasurement>=0.3",
+]
+dev = [
+    "pytest>=7.0",
+    "nbmake>=1.5",
+    "ipykernel",
+    "ruff",
+    "rfmeasurement>=0.3",
+]
+
+[project.urls]
+Homepage = "https://github.com/telmomm/nanovna-measurement-course"
+Issues = "https://github.com/telmomm/nanovna-measurement-course/issues"
+Changelog = "https://github.com/telmomm/nanovna-measurement-course/blob/main/CHANGELOG.md"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/vnacourse"]
+
+# Ship the measurements inside the wheel so that a plain "pip install" (Colab)
+# has them; vnacourse.data looks there when it is not running from a clone.
+[tool.hatch.build.targets.wheel.force-include]
+"data" = "vnacourse/_data"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

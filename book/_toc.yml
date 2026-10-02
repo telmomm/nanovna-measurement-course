@@ -1,0 +1,26 @@
+# Table of contents. Paths are relative to the repository root.
+format: jb-book
+root: book/intro
+parts:
+  - caption: Lessons
+    chapters:
+      - file: notebooks/00_introduccion_vna
+      - file: notebooks/01_reflexion_smith
+      - file: notebooks/02_errores_sistematicos
+      - file: notebooks/03_calibracion_sol
+      - file: notebooks/05_validacion_calidad
+  - caption: Worked solutions
+    chapters:
+      - file: exercises/solutions/00_solutions
+      - file: exercises/solutions/01_solutions
+      - file: exercises/solutions/02_solutions
+      - file: exercises/solutions/03_solutions
+      - file: exercises/solutions/05_solutions
+  - caption: For instructors
+    chapters:
+      - file: instructor/guia_docente
+      - file: instructor/rubrica
+  - caption: Reference
+    chapters:
+      - file: data/README
+      - file: book/setup

@@ -1,0 +1,20 @@
+# Conda environment for the course. Used by Binder (together with postBuild)
+# and by the "binder-env" CI job, so the two cannot drift apart.
+name: nanovna-measurement-course
+channels:
+  - conda-forge
+dependencies:
+  - python=3.12
+  - numpy>=1.24
+  - matplotlib>=3.7
+  - scikit-rf>=1.0
+  - scipy>=1.10
+  - jupyterlab>=4.0
+  - ipykernel
+  - pip
+  # Test tooling, so the notebooks can be executed in this exact environment.
+  - pytest>=7.0
+  - nbmake>=1.5
+  # Installed from PyPI; only notebook 05 needs it.
+  - pip:
+      - rfmeasurement>=0.3

@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this learning module, please cite it as below."
+title: "nanovna-measurement-course: Hands-on vector network analysis with a low-cost NanoVNA"
+type: software
+authors:
+  - family-names: "Miguel-Medina"
+    given-names: "Telmo"
+    orcid: "https://orcid.org/0009-0004-0654-6650"
+repository-code: "https://github.com/telmomm/nanovna-measurement-course"
+license:
+  - BSD-3-Clause
+  - CC-BY-4.0
+version: 0.9.0
+references:
+  - type: software
+    title: "rfmeasurement: an open-source framework for uncertainty-aware validation and reproducible analysis of RF measurements"
+    authors:
+      - family-names: "Miguel-Medina"
+        given-names: "Telmo"
+    doi: 10.5281/zenodo.22058515
+  - type: software
+    title: "NanoVNA Calibration: reproducible calibration and analysis of RF measurements"
+    authors:
+      - family-names: "Miguel-Medina"
+        given-names: "Telmo"
+    doi: 10.5281/zenodo.22722704

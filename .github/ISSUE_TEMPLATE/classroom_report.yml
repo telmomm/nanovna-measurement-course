@@ -1,0 +1,74 @@
+name: Classroom experience
+description: Tell us how you used the module in a course, a workshop or for self-study.
+title: "Classroom experience: "
+labels: ["classroom-report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you. A few lines are enough, and every field except the first is optional.
+        Please do not include names or anything that identifies individual students.
+  - type: textarea
+    id: context
+    attributes:
+      label: Context
+      description: Course or activity, degree and year, institution or country if you wish to say.
+    validations:
+      required: true
+  - type: input
+    id: students
+    attributes:
+      label: Number of students
+  - type: dropdown
+    id: modality
+    attributes:
+      label: Modality
+      options:
+        - In person
+        - Remote, live
+        - Self-paced
+        - Mixed
+  - type: checkboxes
+    id: notebooks
+    attributes:
+      label: Notebooks used
+      options:
+        - label: 00 · What does a VNA measure?
+        - label: 01 · Reflection coefficient and the Smith chart
+        - label: 02 · Systematic errors
+        - label: 03 · SOL calibration
+        - label: 05 · Validation and measurement quality
+        - label: The assignment from the instructor guide
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Where the notebooks were run
+      options:
+        - Binder
+        - Google Colab
+        - Local installation
+        - Several of these
+  - type: textarea
+    id: time
+    attributes:
+      label: Time taken
+      description: How long each notebook took, in class and outside it. Rough figures are fine.
+  - type: textarea
+    id: worked
+    attributes:
+      label: What worked
+  - type: textarea
+    id: difficulties
+    attributes:
+      label: Difficulties
+      description: Where students got stuck, technical problems, anything unclear or wrong in the material.
+  - type: textarea
+    id: changes
+    attributes:
+      label: Changes you made or would suggest
+  - type: checkboxes
+    id: permission
+    attributes:
+      label: Use of this report
+      options:
+        - label: You may summarise this report, without naming me or my institution, in publications about the module.
