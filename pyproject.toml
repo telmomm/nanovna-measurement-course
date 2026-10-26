@@ -42,7 +42,7 @@ notebooks = [
 ]
 # Jupyter Book 1.x: the configuration in book/ is not valid for version 2.
 book = [
-    "jupyter-book>=1.0,<2",
+    "jupyter-book>=1.0,<3",
     "rfmeasurement>=0.3",
     # PDF edition: converts the SVG badges of the notebooks (needs rsvg-convert).
     "sphinxcontrib-svg2pdfconverter>=1.2",
