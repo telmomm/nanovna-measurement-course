@@ -1,0 +1,115 @@
+# Jupyter Book 1.x configuration, Spanish edition. It mirrors book/en/_config.yml;
+# keep the two in step.
+#
+#   jupyter-book build . --config book/es/_config.yml --toc book/es/_toc.yml --path-output book/es
+#
+# The site is written to book/es/_build/html and the PDF, with
+# "--builder pdflatex", to book/es/_build/latex/hands-on-vna-es.pdf.
+
+title: Hands-on VNA
+author: Telmo Miguel-Medina
+copyright: "2026"
+
+# The notebooks are stored without outputs; run them when the book is built.
+execute:
+  execute_notebooks: force
+  timeout: 300
+  allow_errors: false
+
+# Bibliography of the "Sobre este recurso" pages.
+bibtex_bibfiles:
+  - docs/references.bib
+
+only_build_toc_files: true
+exclude_patterns:
+  - "book/*/_build"
+  - "_preview"
+  - ".venv"
+  - "venv"
+  - ".pytest_cache"
+  - ".ruff_cache"
+  - "**/.ipynb_checkpoints"
+
+repository:
+  url: https://github.com/telmomm/nanovna-measurement-course
+  branch: main
+  path_to_book: ""
+
+launch_buttons:
+  notebook_interface: jupyterlab
+  binderhub_url: https://mybinder.org
+  colab_url: https://colab.research.google.com
+
+html:
+  favicon: assets/brand/favicon.svg
+  use_repository_button: true
+  use_issues_button: true
+  use_edit_page_button: false
+  home_page_in_navbar: false
+  announcement: >-
+    Español · <a href="https://telmomm.github.io/nanovna-measurement-course/">Read in English</a>
+    · <a href="https://telmomm.github.io/nanovna-measurement-course/pdf/hands-on-vna-es.pdf">PDF</a>
+
+# PDF: XeLaTeX (set by sphinx-jupyterbook-latex), styled by book/latex.
+latex:
+  latex_documents:
+    targetname: hands-on-vna-es.tex
+
+parse:
+  myst_enable_extensions:
+    - amsmath
+    - dollarmath
+    - html_image
+
+sphinx:
+  # Merge html_theme_options below with the options set above, instead of
+  # replacing them.
+  recursive_update: true
+  extra_extensions:
+    - sphinxcontrib.rsvgconverter
+  config:
+    language: es
+    html_show_copyright: false
+    html_static_path: ["book/_static", "assets/brand"]
+    html_css_files: ["brand.css"]
+    html_theme_options:
+      logo:
+        image_light: _static/mark.svg
+        image_dark: _static/mark-dark.svg
+        text: Hands-on VNA
+    html_title: "Hands-on VNA"
+    # GitHub-style anchors for headings, so that links such as
+    # guia_docente.md#9-evaluación-sumativa work in the book too.
+    myst_heading_anchors: 3
+    nb_merge_streams: true
+    release: "0.1.0"
+    # makeindex instead of xindy: one dependency less for the PDF.
+    latex_use_xindy: false
+    latex_additional_files:
+      - book/latex/handsonvna.sty
+      - book/latex/cover-motif.pdf
+    latex_elements:
+      papersize: a4paper
+      pointsize: 10pt
+      extraclassoptions: openany,oneside
+      fontpkg: ""
+      fncychap: ""
+      sphinxsetup: >-
+        TitleColor={HTML}{0E1116},
+        InnerLinkColor={HTML}{2A78D6},
+        OuterLinkColor={HTML}{2A78D6},
+        VerbatimColor={HTML}{F3F2EE},
+        VerbatimBorderColor={HTML}{E4E3DF},
+        pre_border-radius=4pt,
+        div.note_border-TeXcolor={HTML}{2A78D6},
+        div.warning_border-TeXcolor={HTML}{EB6834},
+        verbatimvisiblespace={\ },
+        verbatimcontinued={\makebox[2\fontcharwd\font`\x][r]{\textcolor{vnamuted}{\tiny$\hookrightarrow$}}},
+        hmargin={22mm,22mm}, vmargin={24mm,26mm}
+      preamble: |
+        \newcommand{\vnasubtitle}{Un módulo de aprendizaje abierto y computacional sobre la medida y la calibración de parámetros S con un NanoVNA de bajo coste.}
+        \newcommand{\vnatagline}{Aprende a medir con un VNA.\\Sin tener uno.}
+        \newcommand{\vnastatus}{Módulo de aprendizaje abierto · Edición en español}
+        \newcommand{\vnachaptername}{Capítulo}
+        \addto\captionsspanish{\renewcommand{\contentsname}{Índice}}
+        \usepackage{handsonvna}

@@ -1,5 +1,7 @@
 # Contributing to nanovna-measurement-course
 
+**English** · [Español](CONTRIBUTING.es.md)
+
 Thank you for considering a contribution. This is teaching material, so the
 most valuable contributions are the ones that help a student understand
 something: a clearer explanation, a better exercise, a corrected equation,
@@ -42,10 +44,13 @@ Then run what CI runs:
 ruff check .
 ruff format --check .
 pytest
-pytest --nbmake notebooks exercises --ignore=notebooks/04_adquisicion_nanovna.ipynb
+pytest --nbmake notebooks exercises es --ignore=notebooks/04_adquisicion_nanovna.ipynb
 ```
 
-The last command executes every lesson and every solution notebook from top
+`pytest` runs the package tests, the tests that recompute every number the
+text quotes (`tests/test_reference_values.py`) and the tests that keep the two
+language editions in step (`tests/test_translations.py`). The last command
+executes every lesson and every solution notebook, in both languages, from top
 to bottom and fails if any cell raises. Notebook 04 is skipped because it
 needs a physical NanoVNA. `ruff format .` fixes formatting, including the
 code cells of notebooks.
@@ -53,17 +58,42 @@ code cells of notebooks.
 ## Building the book
 
 The website is a [Jupyter Book](https://jupyterbook.org) (version 1) built
-from the notebooks and Markdown files where they are; `book/` only holds its
-configuration, table of contents and two pages of its own.
+from the notebooks and Markdown files where they are. There is one book per
+language: `book/en/` and `book/es/` hold each configuration, table of contents
+and the pages of its own; `book/_static/` and `book/latex/` hold the web and
+PDF styles shared by both.
 
 ```bash
 python -m pip install -e ".[book]"
-jupyter-book build . --config book/_config.yml --toc book/_toc.yml --path-output book -W
+tools/build_book.sh                  # both editions, HTML and PDF, into _site/
+tools/build_book.sh --html-only en   # one edition, web only
 ```
 
-Open `book/_build/html/index.html`. The build executes every notebook, and
-`-W` makes a warning (for example a broken link) fail it, as in CI. A new
-notebook or page must be added to `book/_toc.yml` to appear.
+The build executes every notebook, and the HTML build uses `-W`, so a warning
+(for example a broken link) fails it, as in CI. A new notebook or page must be
+added to the `_toc.yml` of both editions to appear. The PDF needs XeLaTeX with
+the IBM Plex fonts (TeX Live's `plex` package) and `rsvg-convert`.
+
+## Two languages
+
+The English edition lives at the root of the repository and the Spanish one
+in `es/`, with the same file names. Every change to a lesson, a solution or
+the instructor material must be made in both:
+
+- **Same cells, same code.** A Spanish notebook has the same cells, in the
+  same order and with the same cell ids, as its English twin. Its code is the
+  same except for comments, docstrings, figure labels and printed messages.
+  `tests/test_translations.py` checks both.
+- **Numbers.** Both editions use the decimal point, as Python does. If you
+  change a number quoted in the text, update `tests/test_reference_values.py`.
+- **If you can only write one language**, open the pull request anyway and
+  say so: a maintainer will add the other.
+
+## Visual identity
+
+Colours, type and the mark are described in
+[`assets/brand/README.md`](assets/brand/README.md). New figures should use
+`vnacourse.plotting.use_course_style()` and the `SERIES` colours in order.
 
 ## Guidelines for notebooks
 
@@ -79,7 +109,7 @@ notebook or page must be added to `book/_toc.yml` to appear.
 - **Commit notebooks with outputs cleared** (in JupyterLab: *Edit → Clear
   Outputs of All Cells*). It keeps diffs reviewable; CI re-executes them.
 - **Keep the Binder and Colab badges** in the first cell pointing at the
-  notebook itself.
+  notebook itself (`es/notebooks/...` in the Spanish edition).
 - **An exercise needs a solution.** If you add or change an exercise, update
   the matching notebook in `exercises/solutions/`. Text that states a number
   must match what the code prints.

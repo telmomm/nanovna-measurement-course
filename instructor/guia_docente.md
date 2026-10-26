@@ -23,6 +23,7 @@ to assess them. The marking rubric is in [rubrica.md](rubrica.md).
 | Time | 10–14 hours (estimate): about 7.5 h guided, plus 2.5 h to 4.5 h of exercises depending on how many you set. The assignment adds 2–3 h. |
 | Assessment | One assignment on real data, marked with the [rubric](rubrica.md) |
 | Runs on | A browser (Binder or Google Colab) or a local Python 3.10+ installation |
+| Languages | English (repository root) and Spanish (`es/` folder), with the same content and numbering |
 
 ## 2. What students learn
 
@@ -123,7 +124,7 @@ Three ways to run the notebooks, in order of how little can go wrong:
 |---|---|---|
 | **Binder** | A browser | Click the badge at the top of a notebook. The first launch after the repository changes takes several minutes while the environment is built; later launches are faster. Sessions are temporary: work is lost when the tab closes unless downloaded. |
 | **Google Colab** | A browser and a Google account | Click the Colab badge. The first code cell of each notebook installs the course package. Work can be saved to the student's Drive. |
-| **Local** | Python 3.10+ | Instructions in [Running the lessons](../book/setup.md). Best for a course that lasts several weeks. |
+| **Local** | Python 3.10+ | Instructions in [Running the lessons](../book/en/setup.md). Best for a course that lasts several weeks. |
 
 Before the first session:
 
@@ -348,7 +349,11 @@ reporting standards they will meet in instrumentation. For telecommunication
 students, connect notebook 00 to antenna matching and notebook 03 to
 two-port calibration, which extends the same idea to twelve error terms.
 
-**Translation.** The material is in English. A Spanish version is planned.
+**Languages.** The material is available in English and in Spanish, with the
+same content: the Spanish edition is in the `es/` folder of the repository and
+has its own [book](https://telmomm.github.io/nanovna-measurement-course/es/). The code (variable names and the `vnacourse` package) is
+the same in both; the Spanish edition translates the text, comments, figure
+labels and messages.
 
 ## 11. Known limitations of the material
 

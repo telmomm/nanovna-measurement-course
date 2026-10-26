@@ -9,6 +9,16 @@ venv/
 .pytest_cache/
 .ruff_cache/
 .ipynb_checkpoints/
-book/_build/
+book/*/_build/
+_site/
 .DS_Store
 *.claude
+
+# LaTeX build files of the manuscript
+publicar/manuscript/*/*.aux
+publicar/manuscript/*/*.bbl
+publicar/manuscript/*/*.blg
+publicar/manuscript/*/*.fdb_latexmk
+publicar/manuscript/*/*.fls
+publicar/manuscript/*/*.log
+publicar/manuscript/*/*.out

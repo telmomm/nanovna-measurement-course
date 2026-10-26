@@ -4,18 +4,66 @@ import matplotlib.pyplot as plt
 import numpy as np
 import skrf as rf
 from cycler import cycler
+from matplotlib import font_manager
 
 # Categorical colours, always used in this order. The first three stay
-# distinguishable under the common forms of colour blindness.
+# distinguishable under the common forms of colour blindness, and they are
+# also the colours of the course's mark: short (blue), open (orange) and
+# load (green).
 SERIES = ("#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#4a3aa7", "#e34948")
-INK = "#0b0b0b"
+INK = "#0e1116"
 INK_SECONDARY = "#52514e"
 GRID = "#e4e3df"
 SURFACE = "#fcfcfb"
 
+# The course typeface. Used only where it is installed, so that figures never
+# depend on it.
+BRAND_FONT = "IBM Plex Sans"
+
+# Labels of draw_error_adapter, per language.
+_ADAPTER_LABELS = {
+    "en": {
+        "directivity": "directivity",
+        "source_match": "source match",
+        "tracking": "reflection tracking",
+        "sent": "sent",
+        "received": "received",
+        "adapter": "error adapter (the imperfect instrument)",
+        "plane": "reference plane",
+    },
+    "es": {
+        "directivity": "directividad",
+        "source_match": "desadaptación\nde fuente",
+        "tracking": "seguimiento de reflexión",
+        "sent": "enviada",
+        "received": "recibida",
+        "adapter": "adaptador de errores (el instrumento imperfecto)",
+        "plane": "plano de referencia",
+    },
+}
+
+
+def _brand_font_available():
+    try:
+        font_manager.findfont(BRAND_FONT, fallback_to_default=False)
+    except ValueError:
+        return False
+    return True
+
 
 def use_course_style():
     """Apply the course plot style to every figure created afterwards."""
+    if _brand_font_available():
+        plt.rcParams.update(
+            {
+                "font.family": "sans-serif",
+                "font.sans-serif": [BRAND_FONT, "DejaVu Sans"],
+                "mathtext.fontset": "custom",
+                "mathtext.rm": BRAND_FONT,
+                "mathtext.it": f"{BRAND_FONT}:italic",
+                "mathtext.bf": f"{BRAND_FONT}:bold",
+            }
+        )
     plt.rcParams.update(
         {
             "figure.facecolor": SURFACE,
@@ -72,8 +120,12 @@ def gamma_plane(ax, radius=1.0, title=None):
     return ax
 
 
-def draw_error_adapter(ax=None):
-    """Signal-flow graph of the three-term error model."""
+def draw_error_adapter(ax=None, lang="en"):
+    """Signal-flow graph of the three-term error model.
+
+    ``lang`` selects the language of the labels: ``"en"`` or ``"es"``.
+    """
+    labels = _ADAPTER_LABELS[lang]
     if ax is None:
         _, ax = plt.subplots(figsize=(7.5, 3.0))
 
@@ -110,9 +162,9 @@ def draw_error_adapter(ax=None):
         )
 
     arrow("a", "in", "1", (0, 0.13))
-    arrow("a", "b", "$e_{00}$\ndirectivity", (0.48, 0), SERIES[0])
-    arrow("out", "in", "$e_{11}$\nsource match", (-0.55, 0), SERIES[1])
-    arrow("out", "b", "$e_{10}e_{01}$   reflection tracking", (0, -0.15), SERIES[2])
+    arrow("a", "b", "$e_{00}$\n" + labels["directivity"], (0.48, 0), SERIES[0])
+    arrow("out", "in", "$e_{11}$\n" + labels["source_match"], (-0.55, 0), SERIES[1])
+    arrow("out", "b", "$e_{10}e_{01}$   " + labels["tracking"], (0, -0.15), SERIES[2])
     ax.annotate(
         "",
         xy=(right + 1.0, bottom),
@@ -131,17 +183,17 @@ def draw_error_adapter(ax=None):
 
     for x, y in nodes.values():
         ax.plot(x, y, "o", color=INK, markersize=6, zorder=3)
-    ax.text(left - 0.15, top, "sent", ha="right", va="center", color=INK_SECONDARY)
-    ax.text(left - 0.15, bottom, "received", ha="right", va="center", color=INK_SECONDARY)
+    ax.text(left - 0.15, top, labels["sent"], ha="right", va="center", color=INK_SECONDARY)
+    ax.text(left - 0.15, bottom, labels["received"], ha="right", va="center", color=INK_SECONDARY)
     ax.text(
         (left + right) / 2,
         top + 0.45,
-        "error adapter (the imperfect instrument)",
+        labels["adapter"],
         ha="center",
         color=INK_SECONDARY,
     )
     ax.axvline(right, color=GRID, linewidth=1.0, linestyle="--", zorder=0)
-    ax.text(right, bottom - 0.42, "reference plane", ha="center", color=INK_SECONDARY)
+    ax.text(right, bottom - 0.42, labels["plane"], ha="center", color=INK_SECONDARY)
 
     ax.set_xlim(left - 1.0, right + 2.0)
     ax.set_ylim(bottom - 0.55, top + 0.6)

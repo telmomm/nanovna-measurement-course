@@ -1,0 +1,163 @@
+% Visual identity of Hands-on VNA for the PDF book.
+%
+% Loaded by the Sphinx LaTeX builder (see latex_elements in book/*/_config.yml)
+% and compiled with XeLaTeX, which sphinx-jupyterbook-latex requires. Colours
+% and type follow assets/brand/README.md.
+% Each language defines \vnasubtitle, \vnatagline, \vnastatus and
+% \vnachaptername before loading this package.
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{handsonvna}[2026/10/24 Hands-on VNA book style]
+
+\RequirePackage{xcolor}
+\RequirePackage{graphicx}
+\RequirePackage{tikz}
+\RequirePackage{titlesec}
+
+% ---------------------------------------------------------------- colours
+\definecolor{vnascreen}{HTML}{0E1116}
+\definecolor{vnascreenraised}{HTML}{1A2029}
+\definecolor{vnapaper}{HTML}{FCFCFB}
+\definecolor{vnashort}{HTML}{2A78D6}
+\definecolor{vnaopen}{HTML}{EB6834}
+\definecolor{vnaopentext}{HTML}{C4501F}
+\definecolor{vnaload}{HTML}{1BAF7A}
+\definecolor{vnagrid}{HTML}{E4E3DF}
+\definecolor{vnamuted}{HTML}{52514E}
+\definecolor{vnamutedscreen}{HTML}{9AA3AE}
+\definecolor{vnasurface}{HTML}{F3F2EE}
+
+% ------------------------------------------------------------------- type
+\setmainfont{IBMPlexSans}[
+  Extension = .otf,
+  UprightFont = *-Regular,
+  BoldFont = *-SemiBold,
+  ItalicFont = *-Italic,
+  BoldItalicFont = *-SemiBoldItalic]
+\setsansfont{IBMPlexSans}[
+  Extension = .otf,
+  UprightFont = *-Regular,
+  BoldFont = *-Bold,
+  ItalicFont = *-Italic,
+  BoldItalicFont = *-BoldItalic]
+\setmonofont{IBMPlexMono}[
+  Extension = .otf,
+  UprightFont = *-Regular,
+  BoldFont = *-SemiBold,
+  ItalicFont = *-Italic,
+  BoldItalicFont = *-SemiBoldItalic,
+  Scale = 0.92]
+\newfontfamily\vnaheadfont{IBMPlexSans}[
+  Extension = .otf,
+  UprightFont = *-Bold,
+  BoldFont = *-Bold]
+\newfontfamily\vnamono{IBMPlexMono}[
+  Extension = .otf,
+  UprightFont = *-Regular,
+  BoldFont = *-SemiBold]
+\RequirePackage{unicode-math}
+\setmathfont{IBMPlexMath-Regular.otf}
+
+% IBM Plex Mono has no Greek letters: in code, Γ, Ω and friends come from
+% Plex Sans. (sphinx-jupyterbook-latex loads ucharclasses with these options.)
+\RequirePackage[Latin,Greek]{ucharclasses}
+\newfontfamily\vnagreek{IBMPlexSans}[
+  Extension = .otf, UprightFont = *-Regular, BoldFont = *-SemiBold, Scale = 0.92]
+% No groups here: a transition can fall on either side of a table cell.
+{\vnagreek\xdef\vnagreekfamily{\f@family}}
+\newcommand{\vnagreekon}{\ifx\f@family\ttdefault\vnagreek\fi}
+\newcommand{\vnagreekoff}{\ifx\f@family\vnagreekfamily\ttfamily\fi}
+\setTransitionsForGreek{\vnagreekon}{\vnagreekoff}
+% A few symbols that neither Plex Sans nor Plex Mono has.
+\RequirePackage{newunicodechar}
+\newfontfamily\vnasymbols{IBMPlexMath-Regular.otf}
+\newunicodechar{∠}{{\vnasymbols ∠}}
+\newunicodechar{∥}{{\vnasymbols ∥}}
+\newunicodechar{►}{{\vnasymbols ►}}
+\newunicodechar{␣}{{\vnasymbols ␣}}
+\linespread{1.12}
+
+% --------------------------------------------------------------- headings
+% Chapters: a small mono label, the title in bold, a Short-blue rule.
+\titleformat{\chapter}[display]
+  {\vnaheadfont\color{vnascreen}}
+  {\vnamono\small\addfontfeatures{LetterSpace=14}\color{vnamuted}%
+   \MakeUppercase{\vnachaptername}\ \thechapter}
+  {6pt}
+  {\fontsize{28}{32}\selectfont\raggedright}
+  [\vspace{4pt}{\color{vnashort}\rule{\textwidth}{2pt}}]
+\titleformat{name=\chapter,numberless}[display]
+  {\vnaheadfont\color{vnascreen}}
+  {}
+  {0pt}
+  {\fontsize{28}{32}\selectfont\raggedright}
+  [\vspace{4pt}{\color{vnashort}\rule{\textwidth}{2pt}}]
+\titlespacing*{\chapter}{0pt}{0pt}{28pt}
+\titleformat{\section}
+  {\vnaheadfont\Large\color{vnascreen}}{\color{vnamuted}\thesection}{0.8em}{}
+\titleformat{\subsection}
+  {\vnaheadfont\large\color{vnascreen}}{\color{vnamuted}\thesubsection}{0.8em}{}
+\titleformat{\subsubsection}
+  {\vnaheadfont\normalsize\color{vnascreen}}{\color{vnamuted}\thesubsubsection}{0.8em}{}
+
+% ------------------------------------------------------- headers, footers
+\fancypagestyle{normal}{%
+  \fancyhf{}%
+  \fancyhead[LE,RO]{\vnamono\footnotesize\color{vnamuted}\nouppercase{\leftmark}}%
+  \fancyhead[RE,LO]{\vnamono\footnotesize\color{vnamuted}Hands-on VNA}%
+  \fancyfoot[LE,RO]{\vnamono\footnotesize\color{vnascreen}\thepage}%
+  \renewcommand{\headrulewidth}{0.4pt}%
+  \renewcommand{\headrule}{{\color{vnagrid}\hrule height\headrulewidth}}%
+  \renewcommand{\footrulewidth}{0pt}}
+\fancypagestyle{plain}{%
+  \fancyhf{}%
+  \fancyfoot[LE,RO]{\vnamono\footnotesize\color{vnascreen}\thepage}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \renewcommand{\footrulewidth}{0pt}}
+
+% ------------------------------------------------------------- the mark
+% \vnamark{size}{ink}: unit circle, real axis and the three SOL standards.
+\newcommand{\vnamark}[2]{%
+  \begin{tikzpicture}[x=#1/2.5, y=#1/2.5]
+    \draw[#2, line width=0.09*#1/2.5] (0,0) circle (1);
+    \draw[#2, line width=0.05*#1/2.5] (-1,0) -- (1,0);
+    \fill[vnashort] (-1,0) circle (0.2);
+    \fill[vnaload] (0,0) circle (0.2);
+    \fill[vnaopen] (1,0) circle (0.2);
+  \end{tikzpicture}}
+
+% ------------------------------------------------------------- the cover
+\renewcommand{\sphinxmaketitle}{%
+  \begin{titlepage}%
+    \thispagestyle{empty}%
+    \begin{tikzpicture}[remember picture, overlay]
+      \fill[vnascreen] (current page.south west) rectangle (current page.north east);
+      \node[anchor=south east, inner sep=0pt]
+        at ([xshift=-14mm, yshift=24mm]current page.south east)
+        {\includegraphics[width=105mm]{cover-motif.pdf}};
+    \end{tikzpicture}%
+    \color{vnapaper}%
+    \vspace*{-6mm}%
+    {\vnamono\small\addfontfeatures{LetterSpace=14}\color{vnamutedscreen}%
+     \MakeUppercase{\vnastatus}\par}%
+    \vspace{30mm}%
+    \vnamark{26mm}{vnapaper}\par
+    \vspace{12mm}%
+    {\vnaheadfont\fontsize{50}{52}\selectfont Hands-on VNA\par}%
+    \vspace{5mm}%
+    {\vnamono\large\color{vnamutedscreen}nanovna-measurement-course\par}%
+    \vspace{14mm}%
+    \begin{minipage}{0.62\textwidth}\raggedright
+      {\fontsize{19}{25}\selectfont\vnatagline\par}%
+      \vspace{8mm}%
+      {\large\color{vnamutedscreen}\vnasubtitle\par}%
+    \end{minipage}%
+    \vfill
+    {\large\@author\par}%
+    \vspace{2mm}%
+    {\vnamono\small\color{vnamutedscreen}\py@release\quad·\quad\@date\par}%
+  \end{titlepage}%
+  \color{vnascreen}}
+
+% ------------------------------------------------- links, code, notes
+\hypersetup{colorlinks=true, linkcolor=vnashort, urlcolor=vnashort, citecolor=vnashort}
+\AtBeginDocument{\color{vnascreen}}

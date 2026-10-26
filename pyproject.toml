@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "vnacourse"
-version = "0.9.0"
+version = "0.1.0"
 description = "Helper utilities for the nanovna-measurement-course learning module on S-parameter measurement and calibration."
 readme = "README.md"
 license = { file = "LICENSE" }
@@ -44,6 +44,8 @@ notebooks = [
 book = [
     "jupyter-book>=1.0,<2",
     "rfmeasurement>=0.3",
+    # PDF edition: converts the SVG badges of the notebooks (needs rsvg-convert).
+    "sphinxcontrib-svg2pdfconverter>=1.2",
 ]
 dev = [
     "pytest>=7.0",

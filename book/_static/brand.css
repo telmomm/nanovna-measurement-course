@@ -1,0 +1,140 @@
+/* Visual identity of Hands-on VNA for the web book (sphinx-book-theme).
+   Colours and type are defined in assets/brand/README.md. */
+
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
+
+:root {
+  --vna-screen: #0e1116;
+  --vna-screen-raised: #1a2029;
+  --vna-paper: #fcfcfb;
+  --vna-short: #2a78d6;
+  --vna-short-dark: #1d5ea8;
+  --vna-open: #eb6834;
+  --vna-open-text: #c4501f;
+  --vna-load: #1baf7a;
+  --vna-grid: #e4e3df;
+  --vna-muted: #52514e;
+  --vna-muted-on-screen: #9aa3ae;
+
+  --pst-font-family-base: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --pst-font-family-heading: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --pst-font-family-monospace: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --pst-font-weight-heading: 700;
+}
+
+html[data-theme="light"] {
+  --pst-color-primary: var(--vna-short);
+  --pst-color-secondary: var(--vna-open-text);
+  --pst-color-accent: var(--vna-open-text);
+  --pst-color-link: var(--vna-short);
+  --pst-color-link-hover: var(--vna-short-dark);
+  --pst-color-text-base: var(--vna-screen);
+  --pst-color-text-muted: var(--vna-muted);
+  --pst-color-heading-color: var(--vna-screen);
+  --pst-color-background: var(--vna-paper);
+  --pst-color-on-background: #ffffff;
+  --pst-color-surface: #f3f2ee;
+  --pst-color-on-surface: var(--vna-screen);
+  --pst-color-border: var(--vna-grid);
+  --pst-color-inline-code: var(--vna-screen);
+  --pst-color-inline-code-links: var(--vna-short);
+  --pst-color-target: #fdeee6;
+}
+
+html[data-theme="dark"] {
+  --pst-color-primary: #6ea8ec;
+  --pst-color-secondary: #f39a6f;
+  --pst-color-accent: #f39a6f;
+  --pst-color-link: #6ea8ec;
+  --pst-color-link-hover: #a3c8f3;
+  --pst-color-text-base: var(--vna-paper);
+  --pst-color-text-muted: var(--vna-muted-on-screen);
+  --pst-color-heading-color: var(--vna-paper);
+  --pst-color-background: var(--vna-screen);
+  --pst-color-on-background: var(--vna-screen-raised);
+  --pst-color-surface: var(--vna-screen-raised);
+  --pst-color-on-surface: var(--vna-paper);
+  --pst-color-border: #2a313c;
+  --pst-color-inline-code: var(--vna-paper);
+  --pst-color-inline-code-links: #6ea8ec;
+  --pst-color-target: #3a2a22;
+}
+
+/* Headings: tight, bold, as in the identity sheet. */
+.bd-article h1 {
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.bd-article h2,
+.bd-article h3 {
+  letter-spacing: -0.01em;
+}
+
+/* Small mono caps for captions and the sidebar part captions, like the
+   section labels of the identity sheet. */
+.bd-sidebar-primary .caption-text,
+.bd-sidebar-primary p.caption {
+  font-family: var(--pst-font-family-monospace);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pst-color-text-muted);
+}
+
+/* Code and notebook cells. */
+div.cell_input,
+div.highlight pre {
+  border-radius: 8px;
+}
+div.cell_input {
+  border-left: 3px solid var(--vna-short) !important;
+}
+
+/* Admonitions: notes in Short blue, warnings in Open orange. */
+.admonition.note,
+div.admonition.note {
+  border-color: var(--vna-short);
+}
+.admonition.warning,
+.admonition.caution,
+.admonition.important {
+  border-color: var(--vna-open);
+}
+
+/* Tables: rules instead of boxes. */
+.bd-article table {
+  border-top: 2px solid var(--pst-color-text-base);
+}
+.bd-article table th {
+  font-weight: 600;
+}
+
+/* Language switch in the announcement bar. */
+.bd-header-announcement {
+  background-color: var(--vna-screen) !important;
+  color: var(--vna-paper);
+  font-family: var(--pst-font-family-monospace);
+  font-size: 0.85rem;
+}
+.bd-header-announcement a {
+  color: #f39a6f;
+  font-weight: 500;
+}
+.bd-header-announcement a:hover {
+  color: var(--vna-paper);
+}
+
+/* Logo next to the site title. */
+.navbar-brand {
+  gap: 0.6rem;
+}
+.navbar-brand img.logo__image {
+  height: 2.2rem;
+  width: auto;
+}
+.navbar-brand p.logo__title {
+  font-weight: 700;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+  color: var(--pst-color-text-base);
+}

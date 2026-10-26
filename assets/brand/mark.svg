@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="-1.25 -1.25 2.5 2.5" role="img" aria-label="Hands-on VNA">
+  <title>Hands-on VNA</title>
+  <!-- Smith chart reduced to the unit circle and the real axis, with the
+       three SOL standards where they sit: Short at Γ = −1, Load at Γ = 0,
+       Open at Γ = +1. -->
+  <circle r="1" fill="none" stroke="#0e1116" stroke-width="0.09"/>
+  <line x1="-1" y1="0" x2="1" y2="0" stroke="#0e1116" stroke-width="0.05"/>
+  <circle cx="-1" r="0.2" fill="#2a78d6"/>
+  <circle r="0.2" fill="#1baf7a"/>
+  <circle cx="1" r="0.2" fill="#eb6834"/>
+</svg>

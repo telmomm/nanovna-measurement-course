@@ -1,6 +1,6 @@
 # Table of contents. Paths are relative to the repository root.
 format: jb-book
-root: book/intro
+root: book/en/intro
 parts:
   - caption: Lessons
     chapters:
@@ -20,7 +20,11 @@ parts:
     chapters:
       - file: instructor/guia_docente
       - file: instructor/rubrica
+  - caption: About this resource
+    chapters:
+      - file: docs/design
+      - file: docs/validation
   - caption: Reference
     chapters:
       - file: data/README
-      - file: book/setup
+      - file: book/en/setup

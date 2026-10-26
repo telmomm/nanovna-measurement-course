@@ -4,11 +4,43 @@ All notable changes to this learning module are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
 and the project follows [Semantic Versioning](https://semver.org/).
 
-## [0.9.0] - Unreleased
+## [0.1.0] - 2026-10-26
 
-First complete version of the core module, before classroom use.
+First public release, archived on Zenodo
+([doi:10.5281/zenodo.23669895](https://doi.org/10.5281/zenodo.23669895)). The core module is complete in
+English and Spanish; it has not yet been used in a classroom.
 
 ### Added
+
+- Spanish edition in `es/`: the five lessons, their worked solutions, the
+  instructor guide, the rubric and the data description, plus `README.es.md`,
+  `CONTRIBUTING.es.md` and `CODE_OF_CONDUCT.es.md`. The code of each Spanish
+  notebook is the same as in its English twin; `tests/test_translations.py`
+  checks it.
+- One book per language (`book/en/`, `book/es/`), each also built as a PDF
+  with XeLaTeX; `tools/build_book.sh` builds both and assembles the site.
+- Visual identity in `assets/brand/` (mark, banners, social preview and the
+  script that draws them), applied to the README, the web book
+  (`book/_static/brand.css`), the PDF (`book/latex/handsonvna.sty`) and the
+  figures (IBM Plex Sans when installed).
+- `docs/design.md` and `docs/validation.md` (and Spanish versions): design
+  methodology with the map from learning outcomes to activities and evidence,
+  and the technical validation of the module, with references in
+  `docs/references.bib`.
+- `tests/test_reference_values.py`: every number the lessons and the
+  instructor guide quote about the data, recomputed, including the expected
+  results of the assignment for all 120 choices of repetitions.
+- `plotting.draw_error_adapter(lang=...)` draws its labels in English or
+  Spanish.
+
+### Changed
+
+- Notebook 03, section 4.2: the residual variation of the 75 Ω resistor after
+  removing the line delay is "between about −8 Ω and +15 Ω", not "roughly
+  ±10 Ω" as stated before.
+- The book configuration moved from `book/` to `book/en/`; the book workflow
+  builds both editions and their PDFs and deploys `_site/`.
+- CI executes the Spanish notebooks too.
 
 - Notebook `00_introduccion_vna.ipynb`: waves on a line, incident and
   reflected waves, S-parameters, and what a VNA measures.

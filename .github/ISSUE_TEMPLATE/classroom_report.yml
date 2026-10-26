@@ -8,6 +8,7 @@ body:
       value: |
         Thank you. A few lines are enough, and every field except the first is optional.
         Please do not include names or anything that identifies individual students.
+        Puedes escribir en español.
   - type: textarea
     id: context
     attributes:
@@ -39,6 +40,14 @@ body:
         - label: 03 · SOL calibration
         - label: 05 · Validation and measurement quality
         - label: The assignment from the instructor guide
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language edition used
+      options:
+        - English
+        - Spanish (es/)
+        - Both
   - type: dropdown
     id: platform
     attributes:

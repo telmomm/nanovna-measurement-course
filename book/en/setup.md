@@ -55,8 +55,18 @@ the versions of the libraries the module uses.
 
 ```bash
 python -m pip install -e ".[book]"
-jupyter-book build . --config book/_config.yml --toc book/_toc.yml --path-output book
+tools/build_book.sh            # both editions, HTML and PDF
+tools/build_book.sh --html-only en
 ```
 
-The site is written to `book/_build/html/`. Building executes every notebook,
-so it takes a minute or two.
+The script builds each edition with Jupyter Book and assembles the website in
+`_site/`: the English edition at the root, the Spanish one in `_site/es/` and
+the PDFs in `_site/pdf/`. Building executes every notebook, so it takes a few
+minutes. The PDF needs XeLaTeX (TeX Live with the `plex` fonts) and
+`rsvg-convert`.
+
+To build one edition by hand:
+
+```bash
+jupyter-book build . --config book/en/_config.yml --toc book/en/_toc.yml --path-output book/en
+```

@@ -1,0 +1,31 @@
+# Table of contents of the Spanish edition. Paths are relative to the
+# repository root; the structure mirrors book/en/_toc.yml.
+format: jb-book
+root: book/es/intro
+parts:
+  - caption: Lecciones
+    chapters:
+      - file: es/notebooks/00_introduccion_vna
+      - file: es/notebooks/01_reflexion_smith
+      - file: es/notebooks/02_errores_sistematicos
+      - file: es/notebooks/03_calibracion_sol
+      - file: es/notebooks/05_validacion_calidad
+  - caption: Soluciones resueltas
+    chapters:
+      - file: es/exercises/solutions/00_solutions
+      - file: es/exercises/solutions/01_solutions
+      - file: es/exercises/solutions/02_solutions
+      - file: es/exercises/solutions/03_solutions
+      - file: es/exercises/solutions/05_solutions
+  - caption: Para docentes
+    chapters:
+      - file: es/instructor/guia_docente
+      - file: es/instructor/rubrica
+  - caption: Sobre este recurso
+    chapters:
+      - file: es/docs/design
+      - file: es/docs/validation
+  - caption: Referencia
+    chapters:
+      - file: es/data/README
+      - file: book/es/setup

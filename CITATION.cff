@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 message: "If you use this learning module, please cite it as below."
-title: "nanovna-measurement-course: Hands-on vector network analysis with a low-cost NanoVNA"
+title: "Hands-on VNA: an open learning module on vector network analysis and calibration with a low-cost NanoVNA"
 type: software
 authors:
   - family-names: "Miguel-Medina"
@@ -10,7 +10,27 @@ repository-code: "https://github.com/telmomm/nanovna-measurement-course"
 license:
   - BSD-3-Clause
   - CC-BY-4.0
-version: 0.9.0
+version: 0.1.0
+date-released: 2026-10-26
+doi: 10.5281/zenodo.23669895
+url: "https://telmomm.github.io/nanovna-measurement-course/"
+abstract: >-
+  Open, bilingual (English and Spanish) computational learning module on
+  S-parameter measurement and calibration. In five Jupyter notebooks students
+  derive the three-term error model of a vector network analyzer, implement
+  short-open-load calibration, verify it on a synthetic instrument and apply it
+  to real NanoVNA measurements included in the repository. It includes worked
+  solutions, an instructor guide, an assessment rubric, web and PDF books, and
+  automated technical validation. No hardware is required.
+keywords:
+  - vector network analyzer
+  - NanoVNA
+  - S-parameters
+  - calibration
+  - Smith chart
+  - Jupyter
+  - open educational resources
+  - engineering education
 references:
   - type: software
     title: "rfmeasurement: an open-source framework for uncertainty-aware validation and reproducible analysis of RF measurements"
